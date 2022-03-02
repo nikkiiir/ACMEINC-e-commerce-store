@@ -1,0 +1,50 @@
+﻿@using ACMEINC.Models;
+@*@using X.PagedList.Mvc.Core
+    @model X.PagedList.IPagedList<Products>*@
+@model IEnumerable<Products>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<br />
+<form method="post">
+    <div class="row">
+        <div class="col-3">
+            <input type="text" class="form-control" name="lowAmount" />
+        </div>
+        <div class="col-3">
+            <input type="number" class="form-control" name="largeAmount" />
+        </div>
+        <div class="col-3">
+            <input type="submit" value="Search" class="btn btn-success" />
+        </div>
+        <div class="col-3"></div>
+    </div>
+</form>
+<br />
+
+
+<div class="row">
+    @foreach (var product in Model)
+    {
+        <div class="col-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">
+                        <label style="font-size: 20px;color: steelblue">@product.Name</label>
+                    </h4>
+                </div>
+                <img src="/@product.Image" alt="Card Image" class="card-img-top" style="height: 300px;" />
+                <div class="card-header">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <label style="font-size: 20px; color: #A51313"><b>Price: R @product.Price</b></label>
+                        </div>
+                        <a asp-action="Detail" asp-controller="Home" asp-route-id="@product.Id" class="btn btn-outline-primary pull-left btn-outline-primary">Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
